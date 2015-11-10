@@ -65,6 +65,7 @@ pbdb_temp_range<- function (data, rank,
                              col="#0000FF", names=TRUE, 
                              do.plot=TRUE){
   
+  rank <- tolower(rank)
   if('taxon_rank' %in% colnames(data)) {
     if (!'genus_name' %in% colnames(data)){
       stop("ERROR: please, add show=c('phylo', 'ident') to your pbdb_occurrences query")
@@ -211,7 +212,7 @@ pbdb_richness <- function (data, rank,
                            bord="#0000FF", 
                            do.plot=TRUE){
   
-  temporal_range<- pbdb_temp_range (data=data, rank=rank,do.plot=FALSE)
+  temporal_range<- pbdb_temp_range (data=data, rank=tolower(rank), do.plot=FALSE)
   te<- temporal_extent
   time<- seq (from=min(te), to= (max(te)), by=res)
   
@@ -296,7 +297,7 @@ pbdb_orig_ext<- function (data, rank, temporal_extent,
                           colour="#0000FF30", bord="#0000FF", 
                           do.plot=TRUE) { 
   
-  temporal_range<- pbdb_temp_range (data=data, rank=rank, do.plot=FALSE)
+  temporal_range<- pbdb_temp_range (data=data, rank=tolower(rank), do.plot=FALSE)
   te<- temporal_extent
   sequence<- seq (from=min(te), to= (max(te)), by=res)
   intv<- data.frame (min=sequence [1:length (sequence)-1], 
